@@ -7,7 +7,7 @@ A live fantasy baseball dashboard built by former D3 baseball players, powered b
 
 ## Preview
 
-![2025 score preview](2025%20score.png)
+![2025 score preview](screenshots/2025%20score.png)
 
 ## Overview
 
