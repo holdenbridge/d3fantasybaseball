@@ -5,6 +5,10 @@ A live fantasy baseball dashboard built by former D3 baseball players, powered b
 
 [Live App](https://d3fantasybaseball.onrender.com/)
 
+## Preview
+
+![2025 score preview](2025%20score.png)
+
 ## Overview
 
 D3 Fantasy Baseball tracks a custom 4-player fantasy league and scores each owner using a weighted points system.  
