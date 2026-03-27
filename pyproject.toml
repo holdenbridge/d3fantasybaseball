@@ -1,0 +1,12 @@
+[project]
+name = "d3-fantasy"
+version = "0.1.0"
+description = "D3 Baseball Fantasy - MLB team win/loss visualization"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "jinja2",
+    "MLB-StatsAPI",
+    "pybaseball",
+]
