@@ -11,8 +11,7 @@ A live fantasy baseball dashboard built by former D3 baseball players, powered b
 
 ## Overview
 
-D3 Fantasy Baseball tracks a custom 4-player fantasy league and scores each owner using a weighted points system.  
-The app combines MLB standings, home run leaders, strikeout leaders, and rookie WAR into a single live leaderboard.
+D3 Fantasy Baseball tracks a custom 4-player fantasy league and scores each owner using a weighted points system. The app combines MLB standings, home run leaders, strikeout leaders, and rookie WAR into a single live leaderboard.
 
 ## Scoring System
 
@@ -46,9 +45,11 @@ The app combines MLB standings, home run leaders, strikeout leaders, and rookie 
 ├── app/
 │   ├── main.py              # FastAPI routes + data fetching/cache logic
 │   ├── templates/
-│   │   └── index.html       # D3 dashboard UI
+│   │   └── index.html       # Dashboard UI
 │   └── static/
 │       └── avatars/         # Player avatar assets
+├── screenshots/
+│   └── 2025 score.png       # README preview image
 ├── requirements.txt
 ├── pyproject.toml
 └── render.yaml
