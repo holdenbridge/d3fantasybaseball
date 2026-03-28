@@ -96,7 +96,7 @@ DRAFTED_BATTERS = {
     "Cal Raleigh": 663728,
     "Pete Alonso": 624413,
     "Juan Soto": 665742,
-    # "Nick Kurtz": 706087,
+    "Nick Kurtz": 701762,
     "Kyle Schwarber": 656941,
     "Junior Caminero": 691406,
 }
