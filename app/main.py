@@ -200,23 +200,18 @@ ROOKIES_2026 = [
     "Munetaka Murakami",
     "JJ Wetherholt",
     "Carter Jensen",
-    "Trey Yesavage",
     "Samuel Basallo",
-    "Nolan McLean",
     "Konnor Griffin",
     "Sal Stewart",
-    "Andrew Painter",
-    "Bubba Chandlet",
     "Chase DeLauter",
 ]
 
 
 def _fetch_war_rookies():
     try:
-        from pybaseball import batting_stats, pitching_stats
+        from pybaseball import batting_stats
 
-        bat = batting_stats(2026, qual=0)
-        pitch = pitching_stats(2026, qual=0)
+        bat = batting_stats(2026, qual=0, stat_columns= ["WAR", "OPS"])
     except Exception:
         log.exception("pybaseball fetch failed")
         return []
@@ -232,17 +227,6 @@ def _fetch_war_rookies():
                 "team": row.get("Team", ""),
                 "war": round(float(row.get("WAR", 0)), 1),
             }
-
-    for _, row in pitch.iterrows():
-        name = row.get("Name", "")
-        if name in rookie_set:
-            pitch_war = round(float(row.get("WAR", 0)), 1)
-            if name not in results or pitch_war > results[name]["war"]:
-                results[name] = {
-                    "name": name,
-                    "team": row.get("Team", ""),
-                    "war": pitch_war,
-                }
 
     return sorted(results.values(), key=lambda r: r["war"], reverse=True)
 
