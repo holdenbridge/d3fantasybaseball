@@ -193,18 +193,19 @@ def k_leaders():
     _set_cached("k_leaders", data)
     return data
 
+ROOKIE_WAR_FALLBACK_DATE = "March 31, 2026"
 
-ROOKIES_2026 = [
-    "Kevin McGonigle",
-    "Kazuma Okamoto",
-    "Munetaka Murakami",
-    "JJ Wetherholt",
-    "Carter Jensen",
-    "Samuel Basallo",
-    "Konnor Griffin",
-    "Sal Stewart",
-    "Chase DeLauter",
-]
+ROOKIES_2026 = {
+    "Kevin McGonigle" : (0.3, "DET"),
+    "Kazuma Okamoto" : (0.4, "TOR"),
+    "Munetaka Murakami" : (0.4, "CWS"),
+    "JJ Wetherholt" : (0.2, "STL"),
+    "Carter Jensen" : (-0.1, "KC"),
+    "Samuel Basallo" : (0.0, "BAL"),
+    "Sal Stewart" : (0.5, "CIN"),
+    "Chase DeLauter" : (0.4, "CLE"),
+    "Owen Caissie" : (0.4, "MIA"),
+}
 
 
 def _fetch_war_rookies():
@@ -214,21 +215,40 @@ def _fetch_war_rookies():
         bat = batting_stats(2026, qual=0, stat_columns= ["WAR", "OPS"])
     except Exception:
         log.exception("pybaseball fetch failed")
-        return []
+        fallback = sorted(
+            [{"name": name, "team": team, "war": fallback_war} 
+            for name, (fallback_war, team) in ROOKIES_2026.items()], 
+            key=lambda r: r["war"], reverse=True)
+        return {
+            "note": f"Using WAR values from {ROOKIE_WAR_FALLBACK_DATE}",
+            "rookies": fallback,
+        }
 
-    rookie_set = set(ROOKIES_2026)
     results = {}
+    used_fallback = False
 
     for _, row in bat.iterrows():
         name = row.get("Name", "")
-        if name in rookie_set:
+        if name in ROOKIES_2026:
             results[name] = {
                 "name": name,
                 "team": row.get("Team", ""),
                 "war": round(float(row.get("WAR", 0)), 1),
             }
 
-    return sorted(results.values(), key=lambda r: r["war"], reverse=True)
+    for name, fallback_war in ROOKIES_2026.items():
+        if name not in results:
+            results[name] = {
+                "name": name,
+                "war": fallback_war,
+            }
+            used_fallback = True
+    
+    rookies = sorted(results.values(), key=lambda r: r["war"], reverse=True)
+    resp: dict = {"rookies": rookies}
+    if used_fallback:
+        resp["note"] = f"Using WAR values from {ROOKIE_WAR_FALLBACK_DATE}"
+    return resp
 
 
 @app.get("/api/war-rookies")

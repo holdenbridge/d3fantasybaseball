@@ -294,7 +294,15 @@ document.addEventListener("touchstart", e => {
   const standings  = await standingsRes.json();
   const allHrData  = await hrRes.json();
   const allKData   = await kRes.json();
-  const allWarData = await warRes.json();
+  const warPayload  = await warRes.json();
+  const allWarData = warPayload.rookies ?? warPayload;
+  if (warPayload.note){
+    const banner = document.createElement("div");
+    banner.textContent = "\u26A0\uFE0F " + warPayload.note;
+    banner.style.cssText = "background:#2a2520;color:#f0c36d;padding:10px 16px;border-radius:8px;text-align:center;margin:12px auto;max-width:600px;width:calc(100% - 32px);font-size:13px;border:1px solid #3d3428;";
+    const header = document.querySelector("header");
+    header ? header.after(banner) : document.body.prepend(banner);
+  }
 
   const teamMap = Object.fromEntries(standings.map(t => [t.name, t]));
   const hrMap   = Object.fromEntries(allHrData.map(b => [b.name, b]));
