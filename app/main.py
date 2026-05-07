@@ -193,19 +193,19 @@ def k_leaders():
     _set_cached("k_leaders", data)
     return data
 
-ROOKIE_WAR_FALLBACK_DATE = "April 27, 2026"
+ROOKIE_WAR_FALLBACK_DATE = "May 7, 2026"
 
 ROOKIES_2026 = {
-    "Kevin McGonigle" : (1.5, "DET"),
-    "Kazuma Okamoto" : (0.3, "TOR"),
-    "Munetaka Murakami" : (1.1, "CWS"),
-    "JJ Wetherholt" : (1.1, "STL"),
-    "Carter Jensen" : (0.7, "KC"),
-    "Samuel Basallo" : (0.3, "BAL"),
-    "Sal Stewart" : (1.2, "CIN"),
-    "Chase DeLauter" : (0.6, "CLE"),
-    "Moisés Ballesteros" : (0.9, "CHC"),
-    "Konnor Griffin" : (0.0, "PIT"),
+    "Kevin McGonigle" : (1.4, "DET"),
+    "Kazuma Okamoto" : (1.0, "TOR"),
+    "Munetaka Murakami" : (1.3, "CWS"),
+    "JJ Wetherholt" : (1.5, "STL"),
+    "Nathan Church" : (0.4, "STL"),
+    "Samuel Basallo" : (0.4, "BAL"),
+    "Sal Stewart" : (0.7, "CIN"),
+    "Chase DeLauter" : (1.4, "CLE"),
+    "Moisés Ballesteros" : (0.6, "CHC"),
+    "Konnor Griffin" : (0.5, "PIT"),
 }
 
 
